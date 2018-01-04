@@ -11,9 +11,9 @@ if [ ! -d "$1" ] ; then
     echo "File does not exist or it is not a directory"
     exit 2
 fi
-
+path=$( echo "$1" |  sed 's/\//\\\//g' )
 # add the file to the path in .zshrc
-sed -i "s/export PATH=/&$1:/" ~/.zshrc > /dev/null 2>&1
+sed -i "s/export PATH=/&$path:/" ~/.zshrc > /dev/null 2>&1
 
 # commit the update
 source ~/.zshrc
